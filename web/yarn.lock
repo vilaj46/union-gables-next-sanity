@@ -1044,10 +1044,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-union-gables-components@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/union-gables-components/-/union-gables-components-1.0.3.tgz#873a8173ed1e7321b1b1e4c5f348add39c7585b2"
-  integrity sha512-Wnkko+Q852HNVuq7togxgPLcDVyCSqGvICzraPsOp2f3JQrzXJWo90EgfAdIgwtxXqTqBSmEumSTbzcg4G+ouQ==
+union-gables-components@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/union-gables-components/-/union-gables-components-1.0.15.tgz#7206444d5368a5c303a0ed57ca38527f6888ec18"
+  integrity sha512-X+Kkx2J+I8TQy2VDcLe0ZgkVUWk2top0b6nIsRniVxnNA4fX0CSW7WQjdCVIORkCwS4A5pYOVVmf3kRNKr/+Zg==
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"

@@ -9278,10 +9278,10 @@ unicode-property-aliases-ecmascript@^2.0.0:
   resolved "https://registry.npmjs.org/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-2.0.0.tgz#0a36cb9a585c4f6abd51ad1deddb285c165297c8"
   integrity sha512-5Zfuy9q/DFr4tfO7ZPeVXb1aPoeQSdeFMLpYuFebehDAhbuevLs5yxSZmIFN1tP5F9Wl4IpJrYojg85/zgyZHQ==
 
-union-gables-components@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/union-gables-components/-/union-gables-components-1.0.3.tgz#873a8173ed1e7321b1b1e4c5f348add39c7585b2"
-  integrity sha512-Wnkko+Q852HNVuq7togxgPLcDVyCSqGvICzraPsOp2f3JQrzXJWo90EgfAdIgwtxXqTqBSmEumSTbzcg4G+ouQ==
+union-gables-components@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/union-gables-components/-/union-gables-components-1.0.15.tgz#7206444d5368a5c303a0ed57ca38527f6888ec18"
+  integrity sha512-X+Kkx2J+I8TQy2VDcLe0ZgkVUWk2top0b6nIsRniVxnNA4fX0CSW7WQjdCVIORkCwS4A5pYOVVmf3kRNKr/+Zg==
 
 union-value@^1.0.0:
   version "1.0.1"

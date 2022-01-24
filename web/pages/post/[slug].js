@@ -7,10 +7,6 @@ import client from "../../client";
 // Renderers
 import BlockRenderer from "../../renderers/BlockRenderer";
 
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
-
 const Post = ({ post = {} }) => {
   const {
     title = "Missing title",

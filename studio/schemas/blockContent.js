@@ -1,6 +1,14 @@
 import React from "react";
-import { PageTitle, PageSubTitle } from "union-gables-components";
+import {
+  PageTitle,
+  PageSubTitle,
+  Paragraph,
+  CustomLink,
+} from "union-gables-components";
 import "union-gables-components/dist/index.css?raw";
+
+// Preview 
+// import ParagraphPreview from "../previews/ParagraphPreview";
 
 export default {
   title: "Block Content",
@@ -15,7 +23,13 @@ export default {
       // you want and decide how you want to deal with it where you want to
       // use your content.
       styles: [
-        { title: "Normal", value: "normal" },
+        {
+          title: "Normal",
+          value: "normal",
+          blockEditor: {
+            render: Paragraph,
+          },
+        },
         {
           title: "H1",
           value: "h1",
@@ -49,11 +63,14 @@ export default {
             title: "URL",
             name: "link",
             type: "object",
+            blockEditor: {
+              render: CustomLink
+            },
             fields: [
               {
                 title: "URL",
                 name: "href",
-                type: "url",
+                type: "string",
               },
             ],
           },
