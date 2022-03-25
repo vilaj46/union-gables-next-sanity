@@ -1,8 +1,12 @@
-const sanityClient = require('@sanity/client')
+// import sanityClient from '@sanity/client'
+const sanityClient = require("@sanity/client");
 
-module.exports = sanityClient({
-  projectId: 'o8p1zdum', // you can find this in sanity.json
-  dataset: 'production', // or the name you chose in step 1
-  useCdn: true, // `false` if you want to ensure fresh data
-  apiVersion: '2021-12-28'
-})
+const client = sanityClient({
+  projectId: "hwbiz02h",
+  dataset: "production",
+  useCdn: false, // `false` if you want to ensure fresh data
+  apiVersion: "2022-01-31",
+});
+
+// export default client
+module.exports = client;

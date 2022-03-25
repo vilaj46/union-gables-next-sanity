@@ -1,43 +1,43 @@
-import React from "react";
-import BlockContent from "@sanity/block-content-to-react";
+import React from 'react'
+import Link from 'next/link'
+import BlockContent from '@sanity/block-content-to-react'
 
-import { PageTitle, PageSubTitle, Paragraph, CustomLink } from "union-gables-components";
-import "union-gables-components/dist/index.css";
+import Center from '../components/Center'
+import Emphasis from '../components/Emphasis'
+import Paragraph from '../components/Paragraph'
+import CustomLink from '../components/CustomLink'
+import PageTitle from '../components/PageTitle/PageTitle'
 
-// Helpers
-import getParagraphChildren from "./helpers/getParagraphChildren";
+import createParagraphChildren from '../components/Paragraph/utilities/createParagraphChildren'
 
 const BlockRenderer = (props) => {
-  const { style = "normal" } = props.node;
+  const {style = 'normal'} = props.node
 
   if (/^h\d/.test(style)) {
-    const level = style.replace(/[^\d]/g, "");
-    if (level == 1) {
-      return <PageTitle>{props.children}</PageTitle>;
-    } else if (level == 2) {
-      return <PageSubTitle>{props.children}</PageSubTitle>;
-    }
+    const level = style.replace(/[^\d]/g, '')
+
+    return <PageTitle header={Number(level)}>{props.children}</PageTitle>
   }
 
-  if (style === "normal") {
-    const { markDefs } = props.node;
-
-    if (markDefs.length > 0) { // There are marks.
-      // Get new children.
-      const newChildren = getParagraphChildren(props);
-      return <Paragraph>{newChildren}</Paragraph>
-    } else {
-      return <Paragraph>{props.children}</Paragraph>
-    }
-    // return BlockContent.defaultSerializers.types.block(props);
+  if (style === 'normal') {
+    const childrenWithCustomComponents = createParagraphChildren(props.children, CustomLink, Link)
+    return <Paragraph>{childrenWithCustomComponents}</Paragraph>
   }
 
-  if (style === "blockquote") {
-    return <blockquote>- {props.children}</blockquote>;
+  // if (style === "blockquote") {
+  //   return <blockquote>- {props.children}</blockquote>;
+  // }
+
+  if (style === 'em') {
+    return <Emphasis>{props.children}</Emphasis>
+  }
+
+  if (style === 'center') {
+    return <Center>{props.children}</Center>
   }
 
   // Fall back to default handling
-  return BlockContent.defaultSerializers.types.block(props);
-};
+  return BlockContent.defaultSerializers.types.block(props)
+}
 
-export default BlockRenderer;
+export default BlockRenderer
