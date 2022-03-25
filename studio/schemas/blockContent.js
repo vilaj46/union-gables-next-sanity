@@ -1,88 +1,125 @@
-import React from "react";
-import {
-  PageTitle,
-  PageSubTitle,
-  Paragraph,
-  CustomLink,
-} from "union-gables-components";
-import "union-gables-components/dist/index.css?raw";
+import React from 'react'
 
-// Preview 
-// import ParagraphPreview from "../previews/ParagraphPreview";
+// Components
+import Center from '../components/Center'
+import Emphasis from '../components/Emphasis'
+import Paragraph from '../components/Paragraph'
+import CustomLink from '../components/CustomLink'
+import PageTitle from '../components/PageTitle/PageTitle'
+
+// Schemas
+import hrSchema from '../components/HR/cms/schema'
+import darkenSliderSchema from '../components/DarkenSlider/cms/schema'
+import redBallLinksSchema from '../components/RedBallLinks/cms/schema'
 
 export default {
-  title: "Block Content",
-  name: "blockContent",
-  type: "array",
+  title: 'Block Content',
+  name: 'blockContent',
+  type: 'array',
   of: [
+    hrSchema,
+    redBallLinksSchema,
+    darkenSliderSchema,
     {
-      title: "Block",
-      type: "block",
+      title: 'Block',
+      type: 'block',
       // Styles let you set what your user can mark up blocks with. These
       // corrensponds with HTML tags, but you can set any title or value
       // you want and decide how you want to deal with it where you want to
       // use your content.
       styles: [
         {
-          title: "Normal",
-          value: "normal",
+          title: 'Normal',
+          value: 'normal',
           blockEditor: {
-            render: Paragraph,
-          },
+            render: Paragraph
+          }
         },
         {
-          title: "H1",
-          value: "h1",
+          title: 'Center',
+          value: 'center',
           blockEditor: {
-            render: PageTitle,
-          },
+            render: Center
+          }
         },
         {
-          title: "H2",
-          value: "h2",
+          title: 'EM',
+          value: 'em',
           blockEditor: {
-            render: PageSubTitle,
-          },
+            render: Emphasis
+          }
         },
-        { title: "H3", value: "h3" },
-        { title: "H4", value: "h4" },
-        { title: "Quote", value: "blockquote" },
+        {
+          title: 'H1',
+          value: 'h1',
+          blockEditor: {
+            render: ({ children }) => {
+              return <PageTitle header={1}>{children}</PageTitle>
+            }
+          }
+        },
+        {
+          title: 'H2',
+          value: 'h2',
+          blockEditor: {
+            render: ({ children }) => {
+              return <PageTitle header={2}>{children}</PageTitle>
+            }
+          }
+        },
+        {
+          title: 'H3',
+          value: 'h3',
+          blockEditor: {
+            render: ({ children }) => {
+              return <PageTitle header={3}>{children}</PageTitle>
+            }
+          }
+        },
+        { title: 'H4', value: 'h4' },
+        { title: 'Quote', value: 'blockquote' }
       ],
-      lists: [{ title: "Bullet", value: "bullet" }],
+      lists: [{ title: 'Bullet', value: 'bullet' }],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
         // preference or highlighting by editors.
         decorators: [
-          { title: "Strong", value: "strong" },
-          { title: "Emphasis", value: "em" },
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' }
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: "URL",
-            name: "link",
-            type: "object",
+            title: 'URL',
+            name: 'link',
+            type: 'object',
             blockEditor: {
               render: CustomLink
             },
             fields: [
               {
-                title: "URL",
-                name: "href",
-                type: "string",
-              },
-            ],
-          },
-        ],
-      },
+                title: 'URL',
+                name: 'href',
+                type: 'string'
+              }
+            ]
+          }
+        ]
+      }
     },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
     {
-      type: "image",
-      options: { hotspot: true },
-    },
-  ],
-};
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt',
+          type: 'string'
+        }
+      ]
+    }
+  ]
+}

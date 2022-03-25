@@ -4,7 +4,7 @@
     "name": "Union Gables Next Sanity"
   },
   "api": {
-    "projectId": "o8p1zdum",
+    "projectId": "hwbiz02h",
     "dataset": "production"
   },
   "plugins": [
@@ -14,8 +14,10 @@
     "@sanity/default-login",
     "@sanity/desk-tool"
   ],
-  "parts": [{
-    "name": "part:@sanity/base/schema",
-    "path": "./schemas/schema.js"
-  }]
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    }
+  ]
 }
