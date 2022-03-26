@@ -1,6 +1,6 @@
-import React from 'react'
-import groq from 'groq'
-import BlockContent from '@sanity/block-content-to-react'
+import React from "react";
+import groq from "groq";
+import BlockContent from "@sanity/block-content-to-react";
 
 // No drop down for rooms in header.
 // Dropdown for other things though.
@@ -15,33 +15,35 @@ import BlockContent from '@sanity/block-content-to-react'
 // RedBallLinks mobile friendly.
 
 // Sanity Client
-import client from '../client'
+import client from "../client";
 
 // Renderers
-import BlockRenderer from '../renderers/BlockRenderer'
-import ImageRenderer from '../renderers/ImageRenderer'
-import BreakRenderer from '../renderers/BreakRenderer'
-import ObjectRenderer from '../renderers/ObjectRenderer'
-import DarkenSliderRenderer from '../renderers/DarkenSliderRenderer'
+import BlockRenderer from "../renderers/BlockRenderer";
+import ImageRenderer from "../renderers/ImageRenderer";
+import BreakRenderer from "../renderers/BreakRenderer";
+import ObjectRenderer from "../renderers/ObjectRenderer";
+import DarkenSliderRenderer from "../renderers/DarkenSliderRenderer";
 
 // Components
-import MainContainer from '../components/MainContainer'
+import MainContainer from "../components/MainContainer";
 
-function Pages({page = {}}) {
-  const {title = 'Main Title', body = []} = page
-
+function Pages({
+  page = {
+    body: [],
+  },
+}) {
+  const { body } = page;
   return (
     <main>
       <MainContainer>
         <BlockContent
-          blocks={body}
+          blocks={body || []}
           serializers={{
             types: {
               block: BlockRenderer,
               image: ImageRenderer,
-              redBallList: ObjectRenderer,
-              // image: ImageRenderer,
               break: BreakRenderer,
+              redBallList: ObjectRenderer,
               darkenSlider: DarkenSliderRenderer,
             },
           }}
@@ -49,35 +51,44 @@ function Pages({page = {}}) {
         />
       </MainContainer>
     </main>
-  )
+  );
 }
 
 const query = groq`*[_type == "page" && slug.current == $slug][0]{
   title,
   body
-}`
+}`;
 
 export async function getStaticPaths() {
-  const paths = await client.fetch(groq`*[_type == "page"]`)
+  const paths = await client.fetch(groq`*[_type == "page"]`);
   const createdPaths = paths.map((pageObj) => {
     return {
-      params: {slug: [pageObj.slug.current]},
-    }
-  })
+      params: { slug: [pageObj.slug.current] },
+    };
+  });
   return {
     paths: createdPaths,
     fallback: true,
-  }
+  };
 }
 
 export async function getStaticProps(context) {
-  const {slug = ''} = context.params
-  const page = await client.fetch(query, {slug: 'home-page'})
-  return {
-    props: {
-      page: page || {},
-    },
+  const { slug = "" } = context.params;
+  try {
+    const page = await client.fetch(query, { slug: slug[0] });
+    return {
+      props: {
+        page: page || {},
+      },
+    };
+  } catch {
+    const page = await client.fetch(query, { slug: "home-page" });
+    return {
+      props: {
+        page: page || {},
+      },
+    };
   }
 }
 
-export default Pages
+export default Pages;
