@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import testData from "./slideShowData";
+import sampleData from "./data";
 
 import device from "../../styles/device";
 
@@ -11,6 +11,7 @@ const delay = 5500;
 
 const Container = styled.div`
   width: 100%;
+  overflow: hidden;
 `;
 
 const Slider = styled.div`
@@ -32,12 +33,9 @@ const Dot = styled.div`
   height: 20px;
   width: 20px;
   border-radius: 50%;
-
   cursor: pointer;
   margin: 15px 7px 0px;
-
   background-color: #350313;
-
   &.active {
     background-color: #aa4465;
   }
@@ -47,30 +45,25 @@ const Img = styled.img`
   width: 100%;
   max-width: 100%;
   height: 250px;
-
   @media (${device.mobileL}) {
     height: 350px;
   }
-
   @media (${device.tablet}) {
     height: 550px;
   }
-
   @media (${device.laptop}) {
     height: 650px;
   }
-
   @media (${device.laptop}) {
     height: 750px;
   }
-
   @media (${device.desktop}) {
     height: 80vh;
     object-fit: cover;
   }
 `;
 
-function SlideShow() {
+function SlideShow({ slides = sampleData }) {
   const [index, setIndex] = useState(0);
   const timeoutRef = useRef(null);
 
@@ -85,7 +78,7 @@ function SlideShow() {
     timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
-          prevIndex === testData.length - 1 ? 0 : prevIndex + 1
+          prevIndex === slides.length - 1 ? 0 : prevIndex + 1
         ),
       delay
     );
@@ -98,7 +91,7 @@ function SlideShow() {
   return (
     <Container>
       <Slider style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
-        {testData.map((img, idx) => {
+        {slides.map((img, idx) => {
           return (
             <Slide key={idx}>
               <Img src={img.src} alt={img.alt} />
@@ -108,7 +101,7 @@ function SlideShow() {
       </Slider>
 
       <Dots>
-        {testData.map((_, idx) => (
+        {slides.map((_, idx) => (
           <Dot
             key={idx}
             className={`slideshowDot${index === idx ? " active" : ""}`}
