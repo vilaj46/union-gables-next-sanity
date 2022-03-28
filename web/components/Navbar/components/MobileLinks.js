@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import Hamburger from "hamburger-react";
+import Hamburger from "./Hamburger";
 
 // Components
 import Item from "./Item";
@@ -25,7 +25,7 @@ const LinksContainer = styled.div`
   flex-direction: column;
 `;
 
-function MobileNavbar({ links, routerPush }) {
+function MobileNavbar({ links, routerPush, LinkComponent = null }) {
   const [isOpen, setOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -62,8 +62,8 @@ function MobileNavbar({ links, routerPush }) {
     isScrolling === false && (
       <MobileNavbarContainer>
         <Item routerPush={routerPush} dropdown={true}>
-          <Hamburger toggled={isOpen} toggle={setOpen} />
-          <Logo mobile={true} />
+          <Hamburger isOpen={isOpen} setOpen={setOpen} />
+          <Logo mobile={true} LinkComponent={LinkComponent} />
         </Item>
         {isOpen && (
           <LinksContainer>

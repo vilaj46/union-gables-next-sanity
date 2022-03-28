@@ -27,10 +27,10 @@ const LinksContainer = styled.div`
   //   margin-top: 25px;
 `;
 
-function RegularLinks({ links, routerPush }) {
+function RegularLinks({ links, routerPush, LinkComponent = null }) {
   return (
     <NavbarContainer>
-      <Logo />
+      <Logo LinkComponent={LinkComponent} />
       <LinksContainer>
         {links.map((link, idx) => {
           const { dropdown } = link;

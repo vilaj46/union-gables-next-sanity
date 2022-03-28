@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 // Components
 import Navbar from "../components/Navbar";
@@ -12,6 +13,7 @@ import DarkenSlider from "../components/DarkenSlider/";
 import PageTitle from "../components/PageTitle/PageTitle";
 import RedBallLinks from "../components/RedBallLinks";
 import ReasonsToStay from "../components/ReasonsToStay";
+import Hamburger from "../components/Navbar/components/Hamburger";
 
 const darkSliderObjectOne = {
   href: "/",
@@ -80,13 +82,14 @@ const reasonsList = [
 ];
 
 function Components() {
+  const router = useRouter();
   return (
     <div style={{ overflowX: "hidden" }}>
-      <Navbar />
-      <Slideshow />
+      <Navbar router={router} LinkComponent={Link} />
+      {/* <Slideshow /> */}
       {/* <ReasonsToStay list={reasonsList} /> */}
 
-      <PageTitle header={1}>H1 PageTitle</PageTitle>
+      {/* <PageTitle header={1}>H1 PageTitle</PageTitle>
       <PageTitle header={2}>H2 PageTitle</PageTitle>
       <PageTitle header={3}>H3 PageTitle</PageTitle>
 
@@ -100,7 +103,7 @@ function Components() {
       <DarkenSlider list={darkSliderTwoList} long={false} />
 
       <p>Dark Slider three:</p>
-      <DarkenSlider list={darkSliderThreeList} long={false} />
+      <DarkenSlider list={darkSliderThreeList} long={false} /> */}
     </div>
   );
 }

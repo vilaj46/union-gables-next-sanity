@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
 
 const Container = styled.img`
@@ -18,16 +17,29 @@ const Container = styled.img`
   }
 `;
 
-function Logo({ mobile = false }) {
-  return (
-    <Link href="/">
-      <Container
-        src="/static/images/LOGO.png"
-        alt="Union Gables Inn Logo"
-        mobile={mobile}
-      />
-    </Link>
-  );
+function Logo({ mobile = false, LinkComponent = null }) {
+  // For preview
+  if (LinkComponent === null) {
+    return (
+      <a>
+        <Container
+          src="/static/images/LOGO.png"
+          alt="Union Gables Inn Logo"
+          mobile={mobile}
+        />
+      </a>
+    );
+  } else {
+    return (
+      <LinkComponent href="/">
+        <Container
+          src="/static/images/LOGO.png"
+          alt="Union Gables Inn Logo"
+          mobile={mobile}
+        />
+      </LinkComponent>
+    );
+  }
 }
 
 export default Logo;
