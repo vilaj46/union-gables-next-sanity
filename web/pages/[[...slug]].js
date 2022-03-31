@@ -1,7 +1,7 @@
 import React from "react";
 import groq from "groq";
 import Link from "next/link";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import BlockContent from "@sanity/block-content-to-react";
 
 // No drop down for rooms in header.
@@ -24,17 +24,13 @@ import BlockRenderer from "../renderers/BlockRenderer";
 import ImageRenderer from "../renderers/ImageRenderer";
 import BreakRenderer from "../renderers/BreakRenderer";
 import ObjectRenderer from "../renderers/ObjectRenderer";
-import SlideShowRenderer from "../renderers/SlideShowRenderer";
+// import SlideShowRenderer from "../renderers/SlideShowRenderer";
+import CarouselRenderer from "../renderers/CarouselRenderer";
 import DarkenSliderRenderer from "../renderers/DarkenSliderRenderer";
 
 // Components
-import Navbar from "../components/Navbar";
-import SlideShow from "../components/SlideShow";
-import MainContainer from "../components/MainContainer";
-
-// Utilities
-import findSlideShow from "../components/SlideShow/utilities/findSlideShow";
-import createSlideImages from "../components/SlideShow/utilities/createSlideImages";
+import HeaderNavbar from "../components/MUI/HeaderNavbar";
+import FooterNavbar from "../components/MUI/FooterNavbar";
 
 function Pages({
   page = {
@@ -42,30 +38,26 @@ function Pages({
   },
   headerLinks,
 }) {
-  const router = useRouter();
+  // const router = useRouter();
   const { body } = page;
-  const foundSlideShow = findSlideShow(body) || [];
-  const slides = createSlideImages(foundSlideShow.slides);
   return (
     <main>
-      <SlideShow slides={slides} />
-      <Navbar links={headerLinks} router={router} LinkComponent={Link} />
-      <MainContainer>
-        <BlockContent
-          blocks={body || []}
-          serializers={{
-            types: {
-              block: BlockRenderer,
-              image: ImageRenderer,
-              break: BreakRenderer,
-              redBallList: ObjectRenderer,
-              // slideShow: SlideShowRenderer,
-              darkenSlider: DarkenSliderRenderer,
-            },
-          }}
-          {...client.config()}
-        />
-      </MainContainer>
+      <HeaderNavbar LinkComponent={Link} links={headerLinks} />
+      <BlockContent
+        blocks={body || []}
+        serializers={{
+          types: {
+            block: BlockRenderer,
+            image: ImageRenderer,
+            break: BreakRenderer,
+            redBallList: ObjectRenderer,
+            carousel: CarouselRenderer,
+            darkenSlider: DarkenSliderRenderer,
+          },
+        }}
+        {...client.config()}
+      />
+      <FooterNavbar />
     </main>
   );
 }
