@@ -3,7 +3,7 @@ import React from "react";
 // Components
 import Center from "../components/Center";
 import Emphasis from "../components/Emphasis";
-import Paragraph from "../components/Paragraph";
+import Paragraph from "../components/MUI/Paragraph";
 import CustomLink from "../components/CustomLink";
 import PageTitle from "../components/PageTitle/PageTitle";
 
@@ -13,11 +13,17 @@ import slideShowSchema from "../components/SlideShow/cms/schema";
 import darkenSliderSchema from "../components/DarkenSlider/cms/schema";
 import redBallLinksSchema from "../components/RedBallLinks/cms/schema";
 
+// Mui Schemas
+import carouselSchema from "../components/MUI/Carousel/cms/schema";
+
 export default {
   title: "Block Content",
   name: "blockContent",
   type: "array",
   of: [
+    // MUI Schemas
+    carouselSchema,
+    // Regular Schemas
     hrSchema,
     slideShowSchema,
     redBallLinksSchema,
