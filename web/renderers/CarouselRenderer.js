@@ -4,7 +4,7 @@ import BlockContent from "@sanity/block-content-to-react";
 import Carousel from "../components/MUI/Carousel";
 import createImages from "../components/MUI/Carousel/utilities/createImages";
 
-const SlideShowRenderer = (props) => {
+const CarouselRenderer = (props) => {
   const { _type = "carousel" } = props.node;
 
   if (_type === "carousel") {
@@ -16,4 +16,4 @@ const SlideShowRenderer = (props) => {
   return BlockContent.defaultSerializers.types.block(props);
 };
 
-export default SlideShowRenderer;
+export default CarouselRenderer;

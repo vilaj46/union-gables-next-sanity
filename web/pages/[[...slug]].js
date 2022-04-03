@@ -26,6 +26,7 @@ import BreakRenderer from "../renderers/BreakRenderer";
 import ObjectRenderer from "../renderers/ObjectRenderer";
 // import SlideShowRenderer from "../renderers/SlideShowRenderer";
 import CarouselRenderer from "../renderers/CarouselRenderer";
+import TextCarouselRenderer from "../renderers/TextCarouselRenderer";
 import DarkenSliderRenderer from "../renderers/DarkenSliderRenderer";
 
 // Components
@@ -52,6 +53,7 @@ function Pages({
             break: BreakRenderer,
             redBallList: ObjectRenderer,
             carousel: CarouselRenderer,
+            text_carousel: TextCarouselRenderer,
             darkenSlider: DarkenSliderRenderer,
           },
         }}
