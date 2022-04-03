@@ -15,6 +15,7 @@ import redBallLinksSchema from "../components/RedBallLinks/cms/schema";
 
 // Mui Schemas
 import carouselSchema from "../components/MUI/Carousel/cms/schema";
+import textCarouselSchema from "../components/MUI/TextCarousel/cms/schema";
 
 export default {
   title: "Block Content",
@@ -23,6 +24,7 @@ export default {
   of: [
     // MUI Schemas
     carouselSchema,
+    textCarouselSchema,
     // Regular Schemas
     hrSchema,
     slideShowSchema,
