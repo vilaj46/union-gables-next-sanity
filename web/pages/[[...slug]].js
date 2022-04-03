@@ -30,6 +30,8 @@ import TextCarouselRenderer from "../renderers/TextCarouselRenderer";
 import DarkenSliderRenderer from "../renderers/DarkenSliderRenderer";
 
 // Components
+import Map from "../components/Map";
+import Footer from "../components/MUI/Footer";
 import HeaderNavbar from "../components/MUI/HeaderNavbar";
 import FooterNavbar from "../components/MUI/FooterNavbar";
 
@@ -38,6 +40,7 @@ function Pages({
     body: [],
   },
   headerLinks,
+  slug,
 }) {
   // const router = useRouter();
   const { body } = page;
@@ -59,6 +62,8 @@ function Pages({
         }}
         {...client.config()}
       />
+      {slug === "home-page" && <Map />}
+      <Footer />
       <FooterNavbar />
     </main>
   );
@@ -93,6 +98,7 @@ export async function getStaticProps(context) {
       props: {
         headerLinks: headerLinks,
         page: page || {},
+        slug: slug[0],
       },
     };
   } catch {
@@ -103,6 +109,7 @@ export async function getStaticProps(context) {
       props: {
         headerLinks: headerLinks,
         page: page,
+        slug: "home-page",
       },
     };
   }
